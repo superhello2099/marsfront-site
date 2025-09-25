@@ -1,8 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Brain, Zap, Sparkles, ArrowRight, Mail, Github, Linkedin, Twitter, ChevronDown } from 'lucide-react'
-import { useState } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { Brain, Zap, Sparkles, ArrowRight, Mail, Github, Linkedin, Twitter, ChevronDown, MousePointer2 } from 'lucide-react'
+import { useState, useRef } from 'react'
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -11,57 +11,91 @@ export default function Home() {
     message: ''
   })
 
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  })
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log('Form submitted:', formData)
   }
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div ref={containerRef} className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30 text-gray-900 overflow-x-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-200/20 z-50">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="fixed top-0 w-full bg-white/70 backdrop-blur-xl border-b border-white/20 z-50 shadow-lg shadow-black/[0.03]"
+      >
+        <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="text-2xl font-bold bg-gradient-to-r from-blue-700 via-purple-600 to-blue-800 bg-clip-text text-transparent tracking-tight"
+          >
             Marsfront
-          </div>
-          <div className="hidden md:flex space-x-8">
-            <a href="#services" className="text-gray-600 hover:text-gray-900 transition-colors">Services</a>
-            <a href="#about" className="text-gray-600 hover:text-gray-900 transition-colors">About</a>
-            <a href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
+          </motion.div>
+          <div className="hidden md:flex space-x-10">
+            {['Services', 'About', 'Contact'].map((item, index) => (
+              <motion.a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 + index * 0.1 }}
+                whileHover={{ y: -2 }}
+                className="text-gray-600 hover:text-gray-900 transition-all duration-300 font-medium text-sm tracking-wide relative group"
+              >
+                {item}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full rounded-full"></span>
+              </motion.a>
+            ))}
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
-      {/* Floating Orbs Background */}
+      {/* Enhanced Floating Orbs Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {[...Array(12)].map((_, i) => {
-          const size = 200 + (i % 3) * 100;
-          const left = (i * 17.3 + 10) % 100;
-          const top = (i * 23.7 + 15) % 100;
+        {[...Array(15)].map((_, i) => {
+          const size = 150 + (i % 4) * 80;
+          const left = (i * 17.3 + 5) % 95;
+          const top = (i * 23.7 + 10) % 90;
+          const delay = i * 0.8;
 
           return (
             <motion.div
               key={i}
-              className="absolute rounded-full blur-3xl opacity-10"
+              className="absolute rounded-full"
               style={{
                 width: `${size}px`,
                 height: `${size}px`,
                 left: `${left}%`,
                 top: `${top}%`,
-                background: i % 3 === 0
-                  ? 'linear-gradient(45deg, #3B82F6, #8B5CF6)'
-                  : i % 3 === 1
-                  ? 'linear-gradient(45deg, #06B6D4, #3B82F6)'
-                  : 'linear-gradient(45deg, #8B5CF6, #EC4899)',
+                background: i % 4 === 0
+                  ? 'radial-gradient(circle, rgba(59,130,246,0.1) 0%, rgba(59,130,246,0.02) 70%, transparent 100%)'
+                  : i % 4 === 1
+                  ? 'radial-gradient(circle, rgba(139,92,246,0.1) 0%, rgba(139,92,246,0.02) 70%, transparent 100%)'
+                  : i % 4 === 2
+                  ? 'radial-gradient(circle, rgba(6,182,212,0.08) 0%, rgba(6,182,212,0.015) 70%, transparent 100%)'
+                  : 'radial-gradient(circle, rgba(236,72,153,0.06) 0%, rgba(236,72,153,0.01) 70%, transparent 100%)',
+                filter: 'blur(1px)',
               }}
               animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.1, 0.2, 0.1],
+                scale: [1, 1.3, 1],
+                x: [0, 30, 0],
+                y: [0, -20, 0],
               }}
               transition={{
-                duration: 8 + (i % 3) * 2,
+                duration: 15 + (i % 3) * 5,
                 repeat: Infinity,
-                delay: i * 0.5,
+                delay,
+                ease: "easeInOut",
               }}
             />
           );
@@ -69,122 +103,172 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 pt-20">
-        <div className="text-center max-w-5xl mx-auto">
+      <section className="relative min-h-screen flex items-center justify-center px-6 pt-24">
+        <motion.div style={{ y, opacity }} className="text-center max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-8"
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="mb-12"
           >
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200/30 rounded-full px-4 py-2 mb-8">
-              <Sparkles size={16} className="text-blue-500" />
-              <span className="text-sm font-medium text-blue-700">Pioneering AI Innovation</span>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-50/80 to-purple-50/80 backdrop-blur-sm border border-blue-200/40 rounded-full px-5 py-3 mb-10 shadow-lg shadow-blue-500/10"
+            >
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+              >
+                <Sparkles size={18} className="text-blue-600" />
+              </motion.div>
+              <span className="text-sm font-semibold text-blue-700 tracking-wide">Pioneering AI Innovation</span>
+            </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              <span className="text-gray-900">AI-First</span>
-              <br />
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
-                Technology Solutions
-              </span>
+            <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-[0.9] tracking-tight">
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="text-gray-900 block"
+              >
+                AI-First
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.8 }}
+                className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent block"
+              >
+                Technology
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9, duration: 0.8 }}
+                className="bg-gradient-to-r from-purple-600 to-blue-800 bg-clip-text text-transparent block"
+              >
+                Solutions
+              </motion.span>
             </h1>
           </motion.div>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
+            transition={{ duration: 1, delay: 1.1, ease: "easeOut" }}
+            className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
           >
-            We build intelligent systems that transform how businesses operate,
-            combining cutting-edge AI with robust engineering to deliver scalable solutions.
+            We architect intelligent systems that fundamentally transform how enterprises operate,
+            <br className="hidden md:block" />
+            seamlessly integrating cutting-edge AI with battle-tested engineering excellence.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+            transition={{ duration: 1, delay: 1.3, ease: "easeOut" }}
+            className="flex flex-col sm:flex-row gap-6 justify-center mb-20"
           >
-            <button
+            <motion.button
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              className="group bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 hover:from-blue-700 hover:via-purple-600 hover:to-purple-700 text-white px-10 py-5 rounded-full font-semibold text-lg flex items-center gap-3 transition-all duration-500 shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-500/30"
             >
-              Explore Solutions <ArrowRight size={20} />
-            </button>
-            <button
+              Explore Solutions
+              <motion.div
+                className="group-hover:translate-x-1 transition-transform duration-300"
+              >
+                <ArrowRight size={22} />
+              </motion.div>
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="border-2 border-gray-300 hover:border-blue-500 text-gray-700 hover:text-blue-600 px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:bg-blue-50"
+              className="border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50/50 text-gray-700 hover:text-blue-700 px-10 py-5 rounded-full font-semibold text-lg transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-xl"
             >
               Get in Touch
-            </button>
+            </motion.button>
           </motion.div>
 
           <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 1 }}
             className="flex justify-center"
           >
-            <ChevronDown size={24} className="text-gray-400" />
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              className="text-gray-400 cursor-pointer hover:text-gray-600 transition-colors duration-300"
+              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              <ChevronDown size={28} strokeWidth={1.5} />
+            </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="relative py-24 px-6 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
+      <section id="services" className="relative py-32 px-6">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="text-center mb-24"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Our Expertise</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Comprehensive AI and technology solutions designed to accelerate your digital transformation
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">Our Expertise</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
+              Comprehensive AI and technology solutions meticulously designed to accelerate your digital transformation journey
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-10">
             {[
               {
                 icon: Brain,
                 title: 'AI & Machine Learning',
-                description: 'Custom AI models, natural language processing, computer vision, and predictive analytics to automate complex business processes.',
-                color: 'blue'
+                description: 'Custom neural networks, advanced NLP models, computer vision systems, and predictive analytics engineered to automate and optimize your most complex business processes.',
+                color: 'blue',
+                gradient: 'from-blue-500 to-blue-600'
               },
               {
                 icon: Zap,
                 title: 'System Architecture',
-                description: 'Scalable cloud infrastructure, microservices, API design, and performance optimization for mission-critical applications.',
-                color: 'purple'
+                description: 'Enterprise-grade cloud infrastructure, microservices ecosystems, API orchestration, and performance optimization for mission-critical applications at scale.',
+                color: 'purple',
+                gradient: 'from-purple-500 to-purple-600'
               },
               {
                 icon: Sparkles,
                 title: 'AI Integration',
-                description: 'Seamless integration of AI capabilities into existing workflows, with comprehensive training and ongoing support.',
-                color: 'cyan'
+                description: 'Seamless integration of AI capabilities into existing workflows with comprehensive team training, change management, and ongoing technical support.',
+                color: 'cyan',
+                gradient: 'from-cyan-500 to-cyan-600'
               }
             ].map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"
+                transition={{ duration: 0.8, delay: index * 0.2, ease: "easeOut" }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="group bg-white/70 backdrop-blur-sm p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/40 hover:border-white/60"
               >
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 bg-gradient-to-br ${
-                  service.color === 'blue' ? 'from-blue-500 to-blue-600' :
-                  service.color === 'purple' ? 'from-purple-500 to-purple-600' :
-                  'from-cyan-500 to-cyan-600'
-                }`}>
-                  <service.icon size={28} className="text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className={`w-20 h-20 rounded-3xl flex items-center justify-center mb-8 bg-gradient-to-br ${service.gradient} shadow-lg group-hover:shadow-xl transition-all duration-300`}
+                >
+                  <service.icon size={32} className="text-white" strokeWidth={1.5} />
+                </motion.div>
+                <h3 className="text-2xl font-bold mb-6 group-hover:text-blue-700 transition-colors duration-300">{service.title}</h3>
+                <p className="text-gray-600 leading-relaxed font-light">{service.description}</p>
               </motion.div>
             ))}
           </div>
@@ -192,50 +276,60 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="relative py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+      <section id="about" className="relative py-32 px-6 bg-gradient-to-b from-gray-50/50 to-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 1, ease: "easeOut" }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                Building the Future with
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> AI</span>
+              <h2 className="text-5xl md:text-6xl font-bold mb-10 leading-tight tracking-tight">
+                Crafting the Future
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> with AI</span>
               </h2>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                We're a team of AI researchers, engineers, and innovators dedicated to creating
-                intelligent solutions that push the boundaries of what's possible. Our approach
-                combines deep technical expertise with practical business understanding.
+              <p className="text-xl text-gray-600 mb-12 leading-relaxed font-light">
+                We are a collective of AI researchers, software architects, and digital innovators united by a singular vision:
+                creating intelligent solutions that redefine the boundaries of technological possibility. Our methodology harmoniously
+                blends cutting-edge research with pragmatic business acumen.
               </p>
-              <div className="flex gap-8">
-                <div>
-                  <div className="text-3xl font-bold text-blue-600 mb-2">5+</div>
-                  <div className="text-gray-600">Years Experience</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-purple-600 mb-2">50+</div>
-                  <div className="text-gray-600">AI Projects</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-cyan-600 mb-2">25+</div>
-                  <div className="text-gray-600">Global Clients</div>
-                </div>
+              <div className="flex gap-12">
+                {[
+                  { number: '5+', label: 'Years of Innovation', color: 'text-blue-600' },
+                  { number: '50+', label: 'AI Projects Delivered', color: 'text-purple-600' },
+                  { number: '25+', label: 'Global Partnerships', color: 'text-cyan-600' }
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + index * 0.1, duration: 0.8 }}
+                    className="text-center"
+                  >
+                    <div className={`text-4xl font-bold ${stat.color} mb-3`}>{stat.number}</div>
+                    <div className="text-gray-600 font-light">{stat.label}</div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 1, ease: "easeOut" }}
               className="relative"
             >
-              <div className="aspect-square rounded-3xl bg-gradient-to-br from-blue-50 via-purple-50 to-cyan-50 p-8 flex items-center justify-center">
-                <div className="w-full h-full rounded-2xl bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-cyan-500/20 flex items-center justify-center">
-                  <div className="text-6xl">🚀</div>
+              <div className="aspect-square rounded-[3rem] bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-cyan-50/80 p-12 backdrop-blur-sm shadow-2xl">
+                <div className="w-full h-full rounded-[2rem] bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-cyan-500/10 flex items-center justify-center relative overflow-hidden">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/5 to-transparent"
+                  />
+                  <div className="text-8xl">🚀</div>
                 </div>
               </div>
             </motion.div>
@@ -244,51 +338,58 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="relative py-24 px-6 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
+      <section id="contact" className="relative py-32 px-6">
+        <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="text-center mb-20"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Let's Build Something Amazing</h2>
-            <p className="text-xl text-gray-600">
-              Ready to transform your business with AI? Get in touch with our team.
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">Let's Build Something Extraordinary</h2>
+            <p className="text-xl text-gray-600 font-light">
+              Ready to revolutionize your business with AI? Connect with our innovation team.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-16">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-8"
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="space-y-10"
             >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
-                  <Mail size={24} className="text-white" />
+              <motion.div
+                whileHover={{ x: 5 }}
+                className="flex items-center gap-6"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                  <Mail size={28} className="text-white" strokeWidth={1.5} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">Email</h3>
-                  <p className="text-gray-600">hello@marsfront.com</p>
+                  <h3 className="font-semibold text-xl mb-2">Email</h3>
+                  <p className="text-gray-600 font-light">hello@marsfront.com</p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="pt-6">
-                <h3 className="font-semibold text-lg mb-4">Connect With Us</h3>
-                <div className="flex gap-4">
-                  {[Github, Linkedin, Twitter].map((Icon, index) => (
+              <div className="pt-8">
+                <h3 className="font-semibold text-xl mb-6">Connect With Us</h3>
+                <div className="flex gap-6">
+                  {[
+                    { Icon: Github, href: '#', color: 'hover:bg-gray-50' },
+                    { Icon: Linkedin, href: '#', color: 'hover:bg-blue-50' },
+                    { Icon: Twitter, href: '#', color: 'hover:bg-sky-50' }
+                  ].map(({ Icon, href, color }, index) => (
                     <motion.a
                       key={index}
-                      href="#"
-                      whileHover={{ scale: 1.1 }}
+                      href={href}
+                      whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.9 }}
-                      className="w-12 h-12 bg-white border border-gray-200 rounded-xl flex items-center justify-center hover:border-blue-300 hover:bg-blue-50 transition-all duration-300"
+                      className={`w-16 h-16 bg-white border border-gray-200 rounded-2xl flex items-center justify-center ${color} transition-all duration-300 shadow-lg hover:shadow-xl`}
                     >
-                      <Icon size={20} className="text-gray-600" />
+                      <Icon size={24} className="text-gray-600" strokeWidth={1.5} />
                     </motion.a>
                   ))}
                 </div>
@@ -296,48 +397,45 @@ export default function Home() {
             </motion.div>
 
             <motion.form
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 1, ease: "easeOut" }}
               onSubmit={handleSubmit}
-              className="space-y-6"
+              className="space-y-8"
             >
+              {[
+                { type: 'text', placeholder: 'Your Name', value: formData.name, key: 'name' },
+                { type: 'email', placeholder: 'Your Email', value: formData.email, key: 'email' }
+              ].map((field) => (
+                <div key={field.key}>
+                  <motion.input
+                    whileFocus={{ scale: 1.02 }}
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    value={field.value}
+                    onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
+                    className="w-full px-6 py-5 bg-white/70 backdrop-blur-sm border border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all duration-300 shadow-lg hover:shadow-xl font-light"
+                    required
+                  />
+                </div>
+              ))}
               <div>
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-4 bg-white border border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-colors"
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-4 bg-white border border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-colors"
-                  required
-                />
-              </div>
-              <div>
-                <textarea
-                  placeholder="Tell us about your project"
-                  rows={5}
+                <motion.textarea
+                  whileFocus={{ scale: 1.02 }}
+                  placeholder="Tell us about your vision and how we can bring it to life"
+                  rows={6}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-4 bg-white border border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-colors resize-none"
+                  className="w-full px-6 py-5 bg-white/70 backdrop-blur-sm border border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all duration-300 shadow-lg hover:shadow-xl resize-none font-light"
                   required
                 />
               </div>
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="w-full bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 hover:from-blue-700 hover:via-purple-600 hover:to-purple-700 text-white py-5 rounded-2xl font-semibold text-lg transition-all duration-500 shadow-xl hover:shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/30"
               >
                 Send Message
               </motion.button>
@@ -347,15 +445,22 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="relative border-t border-gray-200 py-12 px-6 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-            Marsfront
-          </div>
-          <p className="text-gray-600 mb-6">AI-First Technology Solutions</p>
-          <p className="text-gray-500 text-sm">
-            © 2024 Marsfront Inc. All rights reserved.
-          </p>
+      <footer className="relative border-t border-gray-200/50 py-16 px-6 bg-gradient-to-t from-gray-50/30 to-white">
+        <div className="max-w-6xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent mb-6 tracking-tight">
+              Marsfront
+            </div>
+            <p className="text-gray-600 mb-8 font-light">AI-First Technology Solutions</p>
+            <p className="text-gray-500 text-sm font-light">
+              © 2024 Marsfront Inc. All rights reserved.
+            </p>
+          </motion.div>
         </div>
       </footer>
     </div>
