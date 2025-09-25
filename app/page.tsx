@@ -394,6 +394,7 @@ We build AI systems that don't just automate—they amplify.
               transition={{ duration: 1, ease: "easeOut" }}
               onSubmit={handleSubmit}
               className="space-y-8"
+              suppressHydrationWarning
             >
               {[
                 { type: 'text', placeholder: 'Your Name', value: formData.name, key: 'name' },
