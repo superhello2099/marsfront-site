@@ -43,7 +43,7 @@ export default function Home() {
             MARSFRONT
           </motion.div>
           <div className="hidden md:flex space-x-10">
-            {['Services', 'About', 'Contact'].map((item, index) => (
+            {['Work', 'Team', 'Contact'].map((item, index) => (
               <motion.a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -124,17 +124,17 @@ export default function Home() {
               >
                 <Sparkles size={18} className="text-blue-600" />
               </motion.div>
-              <span className="text-sm font-semibold text-blue-700 tracking-wide">Where Intelligence Meets Impact</span>
+              <span className="text-sm font-semibold text-blue-700 tracking-wide">AI Engineering at Scale</span>
             </motion.div>
 
-            <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-[0.9] tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-[0.95] tracking-tight">
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
                 className="text-gray-900 block"
               >
-                Intelligence
+                AI Systems
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
@@ -142,15 +142,7 @@ export default function Home() {
                 transition={{ delay: 0.7, duration: 0.8 }}
                 className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent block"
               >
-                Engineered
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9, duration: 0.8 }}
-                className="bg-gradient-to-r from-purple-600 to-blue-800 bg-clip-text text-transparent block"
-              >
-                for Scale
+                That Scale
               </motion.span>
             </h1>
           </motion.div>
@@ -161,9 +153,11 @@ export default function Home() {
             transition={{ duration: 1, delay: 1.1, ease: "easeOut" }}
             className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
           >
-We build AI systems that don't just automate—they amplify. From Fortune 500 enterprises to
+We build AI systems that don't just automate—they amplify.
+            <br />
+            From Fortune 500 enterprises to fast-scaling startups, we deliver
             <br className="hidden md:block" />
-            fast-scaling startups, we deliver intelligence that drives measurable business impact.
+            intelligence that drives measurable business impact.
           </motion.p>
 
           <motion.div
@@ -175,7 +169,7 @@ We build AI systems that don't just automate—they amplify. From Fortune 500 en
             <motion.button
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
               className="group bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 hover:from-blue-700 hover:via-purple-600 hover:to-purple-700 text-white px-10 py-5 rounded-full font-semibold text-lg flex items-center gap-3 transition-all duration-500 shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-500/30"
             >
               See Our Work
@@ -205,7 +199,7 @@ We build AI systems that don't just automate—they amplify. From Fortune 500 en
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
               className="text-gray-400 cursor-pointer hover:text-gray-600 transition-colors duration-300"
-              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
             >
               <ChevronDown size={28} strokeWidth={1.5} />
             </motion.div>
@@ -214,7 +208,7 @@ We build AI systems that don't just automate—they amplify. From Fortune 500 en
       </section>
 
       {/* Services Section */}
-      <section id="services" className="relative py-32 px-6">
+      <section id="work" className="relative py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -277,7 +271,7 @@ We build AI systems that don't just automate—they amplify. From Fortune 500 en
       </section>
 
       {/* About Section */}
-      <section id="about" className="relative py-32 px-6 bg-gradient-to-b from-gray-50/50 to-white">
+      <section id="team" className="relative py-32 px-6 bg-gradient-to-b from-gray-50/50 to-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <motion.div
