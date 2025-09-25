@@ -2,16 +2,10 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Brain, Zap, Sparkles, ArrowRight, Mail, ChevronDown } from 'lucide-react'
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import Image from 'next/image'
 
 export default function Home() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
-
   const containerRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -20,11 +14,6 @@ export default function Home() {
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0])
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
-  }
 
   return (
     <div ref={containerRef} className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30 text-gray-900 overflow-x-hidden">
@@ -134,7 +123,7 @@ export default function Home() {
                 transition={{ delay: 0.5, duration: 0.8 }}
                 className="text-gray-900 block"
               >
-                AI Systems
+                Build AI Agents
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
@@ -142,7 +131,7 @@ export default function Home() {
                 transition={{ delay: 0.7, duration: 0.8 }}
                 className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent block"
               >
-                That Scale
+                That Actually Ship
               </motion.span>
             </h1>
           </motion.div>
@@ -153,11 +142,11 @@ export default function Home() {
             transition={{ duration: 1, delay: 1.1, ease: "easeOut" }}
             className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
           >
-We build AI systems that don't just automate—they amplify.
+            Turn your AI vision into production-ready systems. Fast.
             <br />
-            From Fortune 500 enterprises to fast-scaling startups, we deliver
+            From prototype to production in weeks, not years.
             <br className="hidden md:block" />
-            intelligence that drives measurable business impact.
+            Trusted by forward-thinking teams building the future.
           </motion.p>
 
           <motion.div
@@ -219,7 +208,7 @@ We build AI systems that don't just automate—they amplify.
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">What We Build</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
-              Production-ready AI systems that scale from prototype to IPO. Built for companies that can't afford to wait.
+              Production-ready AI systems built for speed. From autonomous agents to custom LLMs, we ship what works.
             </p>
           </motion.div>
 
@@ -227,22 +216,22 @@ We build AI systems that don't just automate—they amplify.
             {[
               {
                 icon: Brain,
-                title: 'Intelligence Systems',
-                description: 'Custom LLMs, computer vision, and predictive models that process millions of data points in real-time. From recommendation engines to autonomous decision-making platforms.',
+                title: 'AI Agents & Automation',
+                description: 'Custom AI agents that handle complex workflows autonomously. From data processing to customer service, we build agents that think and act intelligently.',
                 color: 'blue',
                 gradient: 'from-blue-500 to-blue-600'
               },
               {
                 icon: Zap,
-                title: 'Infrastructure at Scale',
-                description: 'Cloud-native architectures that handle unicorn-level traffic. Kubernetes orchestration, serverless computing, and edge deployment strategies that never sleep.',
+                title: 'LLM Engineering',
+                description: 'Fine-tuned language models optimized for your specific use case. Better performance, lower costs, and models that understand your business context.',
                 color: 'purple',
                 gradient: 'from-purple-500 to-purple-600'
               },
               {
                 icon: Sparkles,
-                title: 'AI-Native Products',
-                description: 'End-to-end product development with intelligence baked in from day one. Ship faster with AI-powered features that users actually want to pay for.',
+                title: 'Production Infrastructure',
+                description: 'Scale from MVP to millions without breaking. Cloud-native architectures, monitoring, and deployment strategies that keep your AI systems running 24/7.',
                 color: 'cyan',
                 gradient: 'from-cyan-500 to-cyan-600'
               }
@@ -281,19 +270,19 @@ We build AI systems that don't just automate—they amplify.
               transition={{ duration: 1, ease: "easeOut" }}
             >
               <h2 className="text-5xl md:text-6xl font-bold mb-10 leading-tight tracking-tight">
-                Built by
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> Engineering Leaders</span>
+                Founded by
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> Engineers Who Ship</span>
               </h2>
               <p className="text-xl text-gray-600 mb-12 leading-relaxed font-light">
-                Ex-Google, OpenAI, and Anthropic engineers who've scaled AI systems to billions of users.
-                We've been in the room where breakthrough models are trained, products are launched, and companies go public.
-                Now we're bringing that expertise to your business.
+                We've built ML systems, trained models, and deployed to millions.
+                From research labs to production environments, we know what it takes to make AI actually work.
+                Now we're helping you build the future.
               </p>
               <div className="flex gap-12">
                 {[
-                  { number: '$2B+', label: 'Value Created', color: 'text-blue-600' },
-                  { number: '100M+', label: 'Users Reached', color: 'text-purple-600' },
-                  { number: '50+', label: 'Models Deployed', color: 'text-cyan-600' }
+                  { number: '5+', label: 'Years in AI', color: 'text-blue-600' },
+                  { number: '20+', label: 'Models Built', color: 'text-purple-600' },
+                  { number: '3M+', label: 'API Calls/Day', color: 'text-cyan-600' }
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -350,9 +339,9 @@ We build AI systems that don't just automate—they amplify.
             transition={{ duration: 1, ease: "easeOut" }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">Ship AI That Actually Works</h2>
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">Let's Build Something Incredible</h2>
             <p className="text-xl text-gray-600 font-light">
-              From concept to production in weeks, not years. Let's talk about your next breakthrough product.
+              Ready to turn your AI vision into reality? Let's talk.
             </p>
           </motion.div>
 
@@ -365,14 +354,14 @@ We build AI systems that don't just automate—they amplify.
               className="flex items-center justify-center lg:justify-start"
             >
               <div className="text-center lg:text-left">
-                <h3 className="text-2xl font-bold mb-4">Ready to get started?</h3>
+                <h3 className="text-3xl font-bold mb-6">Ready to ship?</h3>
                 <p className="text-xl text-gray-600 font-light mb-8">
-                  Let's discuss how AI can transform your business.
+                  Let's build something incredible together.
                 </p>
                 <div className="space-y-6">
                   <div className="text-lg text-gray-600 font-light">
-                    <p className="mb-2">📍 New York, New York</p>
-                    <p className="mb-4">🌐 marsfront.com</p>
+                    <p className="mb-2">📍 San Francisco, CA</p>
+                    <p className="mb-6">Building the future of AI, one agent at a time.</p>
                   </div>
                   <motion.a
                     href="mailto:hello@marsfront.com"
@@ -387,51 +376,74 @@ We build AI systems that don't just automate—they amplify.
               </div>
             </motion.div>
 
-            <motion.form
+            <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeOut" }}
-              onSubmit={handleSubmit}
-              className="space-y-8"
-              suppressHydrationWarning
+              className="flex items-center justify-center lg:justify-end"
             >
-              {[
-                { type: 'text', placeholder: 'Your Name', value: formData.name, key: 'name' },
-                { type: 'email', placeholder: 'Your Email', value: formData.email, key: 'email' }
-              ].map((field) => (
-                <div key={field.key}>
-                  <motion.input
-                    whileFocus={{ scale: 1.02 }}
-                    type={field.type}
-                    placeholder={field.placeholder}
-                    value={field.value}
-                    onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
-                    className="w-full px-6 py-5 bg-white/70 backdrop-blur-sm border border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all duration-300 shadow-lg hover:shadow-xl font-light"
-                    required
-                  />
+              <div className="aspect-square w-80 rounded-3xl bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-cyan-50/80 p-8 backdrop-blur-sm shadow-2xl overflow-hidden relative">
+                {/* AI Neural Network Animation */}
+                <div className="absolute inset-0 overflow-hidden">
+                  {[...Array(12)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-1 h-1 bg-blue-400 rounded-full"
+                      style={{
+                        left: `${20 + (i % 4) * 20}%`,
+                        top: `${20 + Math.floor(i / 4) * 20}%`,
+                      }}
+                      animate={{
+                        scale: [1, 1.5, 1],
+                        opacity: [0.3, 0.8, 0.3],
+                      }}
+                      transition={{
+                        duration: 2,
+                        delay: i * 0.1,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  ))}
+                  {/* Connection lines */}
+                  <svg className="absolute inset-0 w-full h-full">
+                    <defs>
+                      <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="rgb(59 130 246)" stopOpacity="0.3" />
+                        <stop offset="100%" stopColor="rgb(139 92 246)" stopOpacity="0.3" />
+                      </linearGradient>
+                    </defs>
+                    {[...Array(8)].map((_, i) => (
+                      <motion.line
+                        key={i}
+                        x1={`${20 + (i % 2) * 40}%`}
+                        y1={`${30 + (i % 3) * 20}%`}
+                        x2={`${40 + (i % 3) * 20}%`}
+                        y2={`${50 + (i % 2) * 20}%`}
+                        stroke="url(#connectionGradient)"
+                        strokeWidth="1"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{
+                          duration: 2,
+                          delay: i * 0.2,
+                          repeat: Infinity,
+                          repeatType: "reverse",
+                        }}
+                      />
+                    ))}
+                  </svg>
                 </div>
-              ))}
-              <div>
-                <motion.textarea
-                  whileFocus={{ scale: 1.02 }}
-                  placeholder="Tell us about your vision and how we can bring it to life"
-                  rows={6}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-6 py-5 bg-white/70 backdrop-blur-sm border border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all duration-300 shadow-lg hover:shadow-xl resize-none font-light"
-                  required
-                />
+                <div className="relative z-10 h-full flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-4xl mb-4">🤖</div>
+                    <div className="text-lg font-semibold text-gray-700 mb-2">AI-First</div>
+                    <div className="text-sm text-gray-500">Engineering</div>
+                  </div>
+                </div>
               </div>
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 hover:from-blue-700 hover:via-purple-600 hover:to-purple-700 text-white py-5 rounded-2xl font-semibold text-lg transition-all duration-500 shadow-xl hover:shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/30"
-              >
-                Send Message
-              </motion.button>
-            </motion.form>
+            </motion.div>
           </div>
         </div>
       </section>
