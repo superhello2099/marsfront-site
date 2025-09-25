@@ -360,7 +360,7 @@ export default function Home() {
                 </p>
                 <div className="space-y-6">
                   <div className="text-lg text-gray-600 font-light">
-                    <p className="mb-2">📍 San Francisco, CA</p>
+                    <p className="mb-2">📍 New York, NY</p>
                     <p className="mb-6">Building the future of AI, one agent at a time.</p>
                   </div>
                   <motion.a
@@ -383,64 +383,94 @@ export default function Home() {
               transition={{ duration: 1, ease: "easeOut" }}
               className="flex items-center justify-center lg:justify-end"
             >
-              <div className="aspect-square w-80 rounded-3xl bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-cyan-50/80 p-8 backdrop-blur-sm shadow-2xl overflow-hidden relative">
-                {/* AI Neural Network Animation */}
-                <div className="absolute inset-0 overflow-hidden">
-                  {[...Array(12)].map((_, i) => (
+              <div className="w-80 h-80 rounded-3xl bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 p-8 shadow-2xl overflow-hidden relative border border-blue-500/20">
+                {/* Animated Grid Background */}
+                <div className="absolute inset-0 opacity-20">
+                  <div className="grid grid-cols-8 grid-rows-8 gap-1 h-full w-full">
+                    {[...Array(64)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="bg-blue-400 rounded-sm"
+                        initial={{ opacity: 0.1 }}
+                        animate={{ opacity: [0.1, 0.6, 0.1] }}
+                        transition={{
+                          duration: 2,
+                          delay: (i * 0.05) % 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Central AI Symbol */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="w-24 h-24 border-2 border-blue-400/60 rounded-full relative"
+                  >
+                    <div className="absolute inset-2 border border-purple-400/60 rounded-full">
+                      <div className="absolute inset-2 border border-cyan-400/60 rounded-full flex items-center justify-center">
+                        <Brain size={24} className="text-white" />
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Floating Data Points */}
+                {[...Array(8)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-2 h-2 bg-cyan-400 rounded-full"
+                    style={{
+                      left: `${10 + (i * 37) % 80}%`,
+                      top: `${15 + (i * 23) % 70}%`,
+                    }}
+                    animate={{
+                      scale: [0.5, 1.2, 0.5],
+                      opacity: [0.3, 1, 0.3],
+                    }}
+                    transition={{
+                      duration: 3,
+                      delay: i * 0.3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                ))}
+
+                {/* Code Lines Effect */}
+                <div className="absolute bottom-6 left-6 right-6 space-y-1">
+                  {[...Array(3)].map((_, i) => (
                     <motion.div
                       key={i}
-                      className="absolute w-1 h-1 bg-blue-400 rounded-full"
-                      style={{
-                        left: `${20 + (i % 4) * 20}%`,
-                        top: `${20 + Math.floor(i / 4) * 20}%`,
-                      }}
-                      animate={{
-                        scale: [1, 1.5, 1],
-                        opacity: [0.3, 0.8, 0.3],
-                      }}
+                      className="h-1 bg-gradient-to-r from-blue-400/40 via-purple-400/40 to-cyan-400/40 rounded"
+                      style={{ width: `${60 + i * 15}%` }}
+                      animate={{ opacity: [0.2, 0.8, 0.2] }}
                       transition={{
                         duration: 2,
-                        delay: i * 0.1,
+                        delay: i * 0.4,
                         repeat: Infinity,
                         ease: "easeInOut",
                       }}
                     />
                   ))}
-                  {/* Connection lines */}
-                  <svg className="absolute inset-0 w-full h-full">
-                    <defs>
-                      <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="rgb(59 130 246)" stopOpacity="0.3" />
-                        <stop offset="100%" stopColor="rgb(139 92 246)" stopOpacity="0.3" />
-                      </linearGradient>
-                    </defs>
-                    {[...Array(8)].map((_, i) => (
-                      <motion.line
-                        key={i}
-                        x1={`${20 + (i % 2) * 40}%`}
-                        y1={`${30 + (i % 3) * 20}%`}
-                        x2={`${40 + (i % 3) * 20}%`}
-                        y2={`${50 + (i % 2) * 20}%`}
-                        stroke="url(#connectionGradient)"
-                        strokeWidth="1"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{
-                          duration: 2,
-                          delay: i * 0.2,
-                          repeat: Infinity,
-                          repeatType: "reverse",
-                        }}
-                      />
-                    ))}
-                  </svg>
                 </div>
-                <div className="relative z-10 h-full flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-4xl mb-4">🤖</div>
-                    <div className="text-lg font-semibold text-gray-700 mb-2">AI-First</div>
-                    <div className="text-sm text-gray-500">Engineering</div>
+
+                {/* Text Overlay */}
+                <div className="absolute bottom-8 left-8 right-8 text-center">
+                  <div className="text-white font-mono text-xs opacity-60">
+                    &gt; Building AI systems
                   </div>
+                  <motion.div
+                    animate={{ opacity: [0, 1, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="text-cyan-400 font-mono text-xs mt-1"
+                  >
+                    ◯ Ready to deploy
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
