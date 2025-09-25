@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Brain, Zap, Sparkles, ArrowRight, Mail, Github, Linkedin, Twitter, ChevronDown, MousePointer2 } from 'lucide-react'
+import { Brain, Zap, Sparkles, ArrowRight, Mail, ChevronDown } from 'lucide-react'
 import { useState, useRef } from 'react'
 
 export default function Home() {
@@ -359,40 +359,22 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="space-y-10"
+              className="flex items-center justify-center lg:justify-start"
             >
-              <motion.div
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-6"
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <Mail size={28} className="text-white" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-xl mb-2">Email</h3>
-                  <p className="text-gray-600 font-light">hello@marsfront.com</p>
-                </div>
-              </motion.div>
-
-              <div className="pt-8">
-                <h3 className="font-semibold text-xl mb-6">Connect With Us</h3>
-                <div className="flex gap-6">
-                  {[
-                    { Icon: Github, href: '#', color: 'hover:bg-gray-50' },
-                    { Icon: Linkedin, href: '#', color: 'hover:bg-blue-50' },
-                    { Icon: Twitter, href: '#', color: 'hover:bg-sky-50' }
-                  ].map(({ Icon, href, color }, index) => (
-                    <motion.a
-                      key={index}
-                      href={href}
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.9 }}
-                      className={`w-16 h-16 bg-white border border-gray-200 rounded-2xl flex items-center justify-center ${color} transition-all duration-300 shadow-lg hover:shadow-xl`}
-                    >
-                      <Icon size={24} className="text-gray-600" strokeWidth={1.5} />
-                    </motion.a>
-                  ))}
-                </div>
+              <div className="text-center lg:text-left">
+                <h3 className="text-2xl font-bold mb-4">Ready to get started?</h3>
+                <p className="text-xl text-gray-600 font-light mb-8">
+                  Let's discuss how AI can transform your business.
+                </p>
+                <motion.a
+                  href="mailto:hello@marsfront.com"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  <Mail size={20} strokeWidth={1.5} />
+                  hello@marsfront.com
+                </motion.a>
               </div>
             </motion.div>
 
