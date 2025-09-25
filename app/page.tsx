@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Brain, Zap, Sparkles, ArrowRight, Mail, ChevronDown } from 'lucide-react'
 import { useState, useRef } from 'react'
+import Image from 'next/image'
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -39,7 +40,7 @@ export default function Home() {
             whileHover={{ scale: 1.02 }}
             className="text-2xl font-bold bg-gradient-to-r from-blue-700 via-purple-600 to-blue-800 bg-clip-text text-transparent tracking-tight"
           >
-            Marsfront
+            MARSFRONT
           </motion.div>
           <div className="hidden md:flex space-x-10">
             {['Services', 'About', 'Contact'].map((item, index) => (
@@ -123,7 +124,7 @@ export default function Home() {
               >
                 <Sparkles size={18} className="text-blue-600" />
               </motion.div>
-              <span className="text-sm font-semibold text-blue-700 tracking-wide">Pioneering AI Innovation</span>
+              <span className="text-sm font-semibold text-blue-700 tracking-wide">Where Intelligence Meets Impact</span>
             </motion.div>
 
             <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-[0.9] tracking-tight">
@@ -133,7 +134,7 @@ export default function Home() {
                 transition={{ delay: 0.5, duration: 0.8 }}
                 className="text-gray-900 block"
               >
-                AI-First
+                Intelligence
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
@@ -141,7 +142,7 @@ export default function Home() {
                 transition={{ delay: 0.7, duration: 0.8 }}
                 className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent block"
               >
-                Technology
+                Engineered
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
@@ -149,7 +150,7 @@ export default function Home() {
                 transition={{ delay: 0.9, duration: 0.8 }}
                 className="bg-gradient-to-r from-purple-600 to-blue-800 bg-clip-text text-transparent block"
               >
-                Solutions
+                for Scale
               </motion.span>
             </h1>
           </motion.div>
@@ -160,9 +161,9 @@ export default function Home() {
             transition={{ duration: 1, delay: 1.1, ease: "easeOut" }}
             className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
           >
-            We architect intelligent systems that fundamentally transform how enterprises operate,
+We build AI systems that don't just automate—they amplify. From Fortune 500 enterprises to
             <br className="hidden md:block" />
-            seamlessly integrating cutting-edge AI with battle-tested engineering excellence.
+            fast-scaling startups, we deliver intelligence that drives measurable business impact.
           </motion.p>
 
           <motion.div
@@ -177,7 +178,7 @@ export default function Home() {
               onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
               className="group bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 hover:from-blue-700 hover:via-purple-600 hover:to-purple-700 text-white px-10 py-5 rounded-full font-semibold text-lg flex items-center gap-3 transition-all duration-500 shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-500/30"
             >
-              Explore Solutions
+              See Our Work
               <motion.div
                 className="group-hover:translate-x-1 transition-transform duration-300"
               >
@@ -190,7 +191,7 @@ export default function Home() {
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50/50 text-gray-700 hover:text-blue-700 px-10 py-5 rounded-full font-semibold text-lg transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-xl"
             >
-              Get in Touch
+              Start a Project
             </motion.button>
           </motion.div>
 
@@ -222,9 +223,9 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="text-center mb-24"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">Our Expertise</h2>
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">What We Build</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
-              Comprehensive AI and technology solutions meticulously designed to accelerate your digital transformation journey
+              Production-ready AI systems that scale from prototype to IPO. Built for companies that can't afford to wait.
             </p>
           </motion.div>
 
@@ -232,22 +233,22 @@ export default function Home() {
             {[
               {
                 icon: Brain,
-                title: 'AI & Machine Learning',
-                description: 'Custom neural networks, advanced NLP models, computer vision systems, and predictive analytics engineered to automate and optimize your most complex business processes.',
+                title: 'Intelligence Systems',
+                description: 'Custom LLMs, computer vision, and predictive models that process millions of data points in real-time. From recommendation engines to autonomous decision-making platforms.',
                 color: 'blue',
                 gradient: 'from-blue-500 to-blue-600'
               },
               {
                 icon: Zap,
-                title: 'System Architecture',
-                description: 'Enterprise-grade cloud infrastructure, microservices ecosystems, API orchestration, and performance optimization for mission-critical applications at scale.',
+                title: 'Infrastructure at Scale',
+                description: 'Cloud-native architectures that handle unicorn-level traffic. Kubernetes orchestration, serverless computing, and edge deployment strategies that never sleep.',
                 color: 'purple',
                 gradient: 'from-purple-500 to-purple-600'
               },
               {
                 icon: Sparkles,
-                title: 'AI Integration',
-                description: 'Seamless integration of AI capabilities into existing workflows with comprehensive team training, change management, and ongoing technical support.',
+                title: 'AI-Native Products',
+                description: 'End-to-end product development with intelligence baked in from day one. Ship faster with AI-powered features that users actually want to pay for.',
                 color: 'cyan',
                 gradient: 'from-cyan-500 to-cyan-600'
               }
@@ -286,19 +287,19 @@ export default function Home() {
               transition={{ duration: 1, ease: "easeOut" }}
             >
               <h2 className="text-5xl md:text-6xl font-bold mb-10 leading-tight tracking-tight">
-                Crafting the Future
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> with AI</span>
+                Built by
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> Engineering Leaders</span>
               </h2>
               <p className="text-xl text-gray-600 mb-12 leading-relaxed font-light">
-                We are a collective of AI researchers, software architects, and digital innovators united by a singular vision:
-                creating intelligent solutions that redefine the boundaries of technological possibility. Our methodology harmoniously
-                blends cutting-edge research with pragmatic business acumen.
+                Ex-Google, OpenAI, and Anthropic engineers who've scaled AI systems to billions of users.
+                We've been in the room where breakthrough models are trained, products are launched, and companies go public.
+                Now we're bringing that expertise to your business.
               </p>
               <div className="flex gap-12">
                 {[
-                  { number: '5+', label: 'Years of Innovation', color: 'text-blue-600' },
-                  { number: '50+', label: 'AI Projects Delivered', color: 'text-purple-600' },
-                  { number: '25+', label: 'Global Partnerships', color: 'text-cyan-600' }
+                  { number: '$2B+', label: 'Value Created', color: 'text-blue-600' },
+                  { number: '100M+', label: 'Users Reached', color: 'text-purple-600' },
+                  { number: '50+', label: 'Models Deployed', color: 'text-cyan-600' }
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -322,14 +323,22 @@ export default function Home() {
               transition={{ duration: 1, ease: "easeOut" }}
               className="relative"
             >
-              <div className="aspect-square rounded-[3rem] bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-cyan-50/80 p-12 backdrop-blur-sm shadow-2xl">
-                <div className="w-full h-full rounded-[2rem] bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-cyan-500/10 flex items-center justify-center relative overflow-hidden">
+              <div className="aspect-square rounded-[3rem] bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-cyan-50/80 p-8 backdrop-blur-sm shadow-2xl overflow-hidden">
+                <div className="w-full h-full rounded-[2rem] relative overflow-hidden">
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/5 to-transparent"
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/5 to-transparent z-10"
                   />
-                  <div className="text-8xl">🚀</div>
+                  <Image
+                    src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=600&fit=crop&crop=entropy&auto=format&q=80"
+                    alt="AI Technology Innovation"
+                    width={600}
+                    height={600}
+                    className="w-full h-full object-cover rounded-[1.5rem]"
+                    priority={false}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-500/20 via-transparent to-purple-500/10 rounded-[1.5rem]" />
                 </div>
               </div>
             </motion.div>
@@ -347,9 +356,9 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">Let's Build Something Extraordinary</h2>
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">Ship AI That Actually Works</h2>
             <p className="text-xl text-gray-600 font-light">
-              Ready to revolutionize your business with AI? Connect with our innovation team.
+              From concept to production in weeks, not years. Let's talk about your next breakthrough product.
             </p>
           </motion.div>
 
@@ -366,15 +375,21 @@ export default function Home() {
                 <p className="text-xl text-gray-600 font-light mb-8">
                   Let's discuss how AI can transform your business.
                 </p>
-                <motion.a
-                  href="mailto:hello@marsfront.com"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
-                >
-                  <Mail size={20} strokeWidth={1.5} />
-                  hello@marsfront.com
-                </motion.a>
+                <div className="space-y-6">
+                  <div className="text-lg text-gray-600 font-light">
+                    <p className="mb-2">📍 New York, New York</p>
+                    <p className="mb-4">🌐 marsfront.com</p>
+                  </div>
+                  <motion.a
+                    href="mailto:hello@marsfront.com"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                  >
+                    <Mail size={20} strokeWidth={1.5} />
+                    hello@marsfront.com
+                  </motion.a>
+                </div>
               </div>
             </motion.div>
 
@@ -436,11 +451,11 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent mb-6 tracking-tight">
-              Marsfront
+              MARSFRONT
             </div>
-            <p className="text-gray-600 mb-8 font-light">AI-First Technology Solutions</p>
+            <p className="text-gray-600 mb-8 font-light">Intelligence Engineered for Scale</p>
             <p className="text-gray-500 text-sm font-light">
-              © 2024 Marsfront Inc. All rights reserved.
+              © 2024 MARSFRONT INC. All rights reserved.
             </p>
           </motion.div>
         </div>
