@@ -280,9 +280,9 @@ export default function Home() {
               </p>
               <div className="flex gap-12">
                 {[
-                  { number: 'Est. 2024', label: 'Founded', color: 'text-blue-600' },
-                  { number: '3', label: 'Products Shipped', color: 'text-purple-600' },
-                  { number: '10+', label: 'Active Projects', color: 'text-cyan-600' }
+                  { number: 'Boutique', label: 'AI Studio', color: 'text-blue-600' },
+                  { number: 'Custom', label: 'Solutions', color: 'text-purple-600' },
+                  { number: 'White-Glove', label: 'Service', color: 'text-cyan-600' }
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -383,81 +383,72 @@ export default function Home() {
               transition={{ duration: 1, ease: "easeOut" }}
               className="flex items-center justify-center lg:justify-end"
             >
-              <div className="relative w-80 h-80">
-                {/* Main Gradient Sphere */}
+              <div className="relative w-80 h-80 flex items-center justify-center">
+                {/* Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl" />
+
+                {/* Main Card */}
                 <motion.div
-                  animate={{
-                    scale: [1, 1.05, 1],
-                    rotate: [0, 360]
-                  }}
-                  transition={{
-                    scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-                    rotate: { duration: 20, repeat: Infinity, ease: "linear" }
-                  }}
-                  className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 via-purple-500/30 to-cyan-500/20 backdrop-blur-3xl border border-white/10 shadow-2xl"
-                />
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="relative w-64 h-64 rounded-3xl bg-white/80 backdrop-blur-xl border border-white/20 shadow-2xl shadow-blue-500/10 overflow-hidden"
+                >
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/30 to-cyan-50/50" />
 
-                {/* Inner Glow */}
-                <motion.div
-                  animate={{
-                    opacity: [0.3, 0.8, 0.3],
-                    scale: [0.8, 0.9, 0.8]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className="absolute inset-8 rounded-full bg-gradient-to-br from-blue-400/30 via-purple-400/40 to-cyan-400/30 blur-xl"
-                />
-
-                {/* Core */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                    className="w-16 h-16 rounded-full bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-lg"
-                  >
-                    <Sparkles size={20} className="text-white/80" strokeWidth={1.5} />
-                  </motion.div>
-                </div>
-
-                {/* Orbiting Elements */}
-                {[0, 1, 2].map((i) => (
-                  <motion.div
-                    key={i}
-                    animate={{ rotate: 360 }}
-                    transition={{
-                      duration: 8 + i * 2,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                    className="absolute inset-0 flex items-center justify-center"
-                    style={{ transform: `rotate(${i * 120}deg)` }}
-                  >
+                  {/* Content */}
+                  <div className="relative z-10 h-full flex flex-col items-center justify-center p-8 text-center">
+                    {/* Icon */}
                     <motion.div
-                      className="w-2 h-2 bg-white/60 rounded-full absolute"
-                      style={{
-                        top: '20%',
-                        left: '50%',
-                        marginLeft: '-4px'
-                      }}
                       animate={{
-                        scale: [0.8, 1.2, 0.8],
-                        opacity: [0.6, 1, 0.6],
+                        rotate: [0, 5, -5, 0],
+                        scale: [1, 1.05, 1]
                       }}
                       transition={{
-                        duration: 2,
-                        delay: i * 0.6,
+                        rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                        scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                      }}
+                      className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center mb-6 shadow-lg"
+                    >
+                      <Zap size={24} className="text-white" strokeWidth={2} />
+                    </motion.div>
+
+                    {/* Text */}
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">AI-First</h3>
+                    <p className="text-sm text-gray-600 font-light leading-relaxed">
+                      Building intelligent systems with obsessive attention to detail and craft
+                    </p>
+
+                    {/* Accent Line */}
+                    <motion.div
+                      animate={{ scaleX: [0.5, 1, 0.5] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      className="w-12 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mt-4"
+                    />
+                  </div>
+
+                  {/* Floating Elements */}
+                  {[...Array(3)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-1 h-1 bg-blue-400/40 rounded-full"
+                      style={{
+                        left: `${20 + i * 30}%`,
+                        top: `${15 + i * 15}%`,
+                      }}
+                      animate={{
+                        y: [-2, 2, -2],
+                        opacity: [0.3, 0.8, 0.3],
+                      }}
+                      transition={{
+                        duration: 2 + i * 0.5,
                         repeat: Infinity,
+                        delay: i * 0.4,
                         ease: "easeInOut",
                       }}
                     />
-                  </motion.div>
-                ))}
-
-                {/* Subtle Accent */}
-                <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 blur-2xl" />
+                  ))}
+                </motion.div>
               </div>
             </motion.div>
           </div>
@@ -478,7 +469,7 @@ export default function Home() {
             </div>
             <p className="text-gray-600 mb-8 font-light">Handcrafted AI Solutions</p>
             <p className="text-gray-500 text-sm font-light">
-              © 2024 MARSFRONT INC. All rights reserved.
+              © 2025 MARSFRONT INC. All rights reserved.
             </p>
           </motion.div>
         </div>
