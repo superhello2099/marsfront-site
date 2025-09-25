@@ -123,7 +123,7 @@ export default function Home() {
                 transition={{ delay: 0.5, duration: 0.8 }}
                 className="text-gray-900 block"
               >
-                Build AI Agents
+                AI Intelligence
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
@@ -131,7 +131,7 @@ export default function Home() {
                 transition={{ delay: 0.7, duration: 0.8 }}
                 className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent block"
               >
-                That Actually Ship
+                Crafted to Perfection
               </motion.span>
             </h1>
           </motion.div>
@@ -142,11 +142,11 @@ export default function Home() {
             transition={{ duration: 1, delay: 1.1, ease: "easeOut" }}
             className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
           >
-            Turn your AI vision into production-ready systems. Fast.
+            We architect the impossible. Engineer the extraordinary.
             <br />
-            From prototype to production in weeks, not years.
+            Every line of code meticulously crafted by masters of their domain.
             <br className="hidden md:block" />
-            Trusted by forward-thinking teams building the future.
+            Where visionary ideas meet uncompromising execution.
           </motion.p>
 
           <motion.div
@@ -161,7 +161,7 @@ export default function Home() {
               onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
               className="group bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 hover:from-blue-700 hover:via-purple-600 hover:to-purple-700 text-white px-10 py-5 rounded-full font-semibold text-lg flex items-center gap-3 transition-all duration-500 shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-500/30"
             >
-              See Our Work
+              Explore Our Mastery
               <motion.div
                 className="group-hover:translate-x-1 transition-transform duration-300"
               >
@@ -174,7 +174,7 @@ export default function Home() {
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50/50 text-gray-700 hover:text-blue-700 px-10 py-5 rounded-full font-semibold text-lg transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-xl"
             >
-              Start a Project
+              Commission Excellence
             </motion.button>
           </motion.div>
 
@@ -206,9 +206,9 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="text-center mb-24"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">What We Build</h2>
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">Masterworks in Code</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
-              Handcrafted AI solutions with white-glove service. We're a boutique studio that builds custom AI tools with obsessive attention to detail.
+              Each system is a symphony of intelligence, precision-engineered by virtuosos who've dedicated their lives to the art of artificial intelligence.
             </p>
           </motion.div>
 
@@ -216,22 +216,22 @@ export default function Home() {
             {[
               {
                 icon: Brain,
-                title: 'AI Agents & Automation',
-                description: 'Custom AI agents that handle complex workflows autonomously. From data processing to customer service, we build agents that think and act intelligently.',
+                title: 'Neural Architectures',
+                description: 'We sculpt minds from silicon and mathematics. Each neural network is a masterpiece of cognitive engineering, designed to transcend the boundaries of machine intelligence.',
                 color: 'blue',
                 gradient: 'from-blue-500 to-blue-600'
               },
               {
                 icon: Zap,
-                title: 'LLM Engineering',
-                description: 'Fine-tuned language models optimized for your specific use case. Better performance, lower costs, and models that understand your business context.',
+                title: 'Language Mastery',
+                description: 'Our models don\'t just process language—they understand nuance, context, and the subtle art of human communication. Poetry meets precision in every token.',
                 color: 'purple',
                 gradient: 'from-purple-500 to-purple-600'
               },
               {
                 icon: Sparkles,
-                title: 'Production Infrastructure',
-                description: 'Scale from MVP to millions without breaking. Cloud-native architectures, monitoring, and deployment strategies that keep your AI systems running 24/7.',
+                title: 'Infinite Scale',
+                description: 'Infrastructure that bends to your will, not your wallet. We architect systems that gracefully handle explosive growth while maintaining surgical precision.',
                 color: 'cyan',
                 gradient: 'from-cyan-500 to-cyan-600'
               }
@@ -270,19 +270,19 @@ export default function Home() {
               transition={{ duration: 1, ease: "easeOut" }}
             >
               <h2 className="text-5xl md:text-6xl font-bold mb-10 leading-tight tracking-tight">
-                A Small Team
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> Obsessed with Craft</span>
+                The Architects of
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> Digital Consciousness</span>
               </h2>
               <p className="text-xl text-gray-600 mb-12 leading-relaxed font-light">
-                We build AI tools we'd want to use ourselves.
-                From indie hackers to AI pioneers, we believe the best software comes from small teams with big ideas.
-                Quality over quantity, always.
+                We are the alchemists of the digital age, transmuting raw computation into conscious intelligence.
+                Our collective brings decades of mastery, forged in the crucibles of the world's most demanding challenges.
+                Where others see complexity, we see symphony.
               </p>
               <div className="flex gap-12">
                 {[
-                  { number: 'Boutique', label: 'AI Studio', color: 'text-blue-600' },
-                  { number: 'Custom', label: 'Solutions', color: 'text-purple-600' },
-                  { number: 'White-Glove', label: 'Service', color: 'text-cyan-600' }
+                  { number: 'Visionary', label: 'Leadership', color: 'text-blue-600' },
+                  { number: 'Surgical', label: 'Precision', color: 'text-purple-600' },
+                  { number: 'Obsessive', label: 'Excellence', color: 'text-cyan-600' }
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -339,9 +339,9 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">Let's Build Something Incredible</h2>
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">Summon the Extraordinary</h2>
             <p className="text-xl text-gray-600 font-light">
-              Ready to turn your AI vision into reality? Let's talk.
+              Your vision deserves nothing less than perfection. Let us forge your digital destiny.
             </p>
           </motion.div>
 
@@ -354,14 +354,14 @@ export default function Home() {
               className="flex items-center justify-center lg:justify-start"
             >
               <div className="text-center lg:text-left">
-                <h3 className="text-3xl font-bold mb-6">Ready to ship?</h3>
+                <h3 className="text-3xl font-bold mb-6">Ready to transcend?</h3>
                 <p className="text-xl text-gray-600 font-light mb-8">
-                  Let's build something incredible together.
+                  The future belongs to those who dare to dream in code.
                 </p>
                 <div className="space-y-6">
                   <div className="text-lg text-gray-600 font-light">
                     <p className="mb-2">📍 New York, NY</p>
-                    <p className="mb-6">Building the future of AI, one agent at a time.</p>
+                    <p className="mb-6">Where digital dreams become intelligent reality.</p>
                   </div>
                   <motion.a
                     href="mailto:hello@marsfront.com"
@@ -467,7 +467,7 @@ export default function Home() {
             <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent mb-6 tracking-tight">
               MARSFRONT
             </div>
-            <p className="text-gray-600 mb-8 font-light">Handcrafted AI Solutions</p>
+            <p className="text-gray-600 mb-8 font-light">Masters of Digital Intelligence</p>
             <p className="text-gray-500 text-sm font-light">
               © 2025 MARSFRONT INC. All rights reserved.
             </p>
