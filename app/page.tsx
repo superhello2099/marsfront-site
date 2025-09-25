@@ -113,7 +113,7 @@ export default function Home() {
               >
                 <Sparkles size={18} className="text-blue-600" />
               </motion.div>
-              <span className="text-sm font-semibold text-blue-700 tracking-wide">AI Engineering at Scale</span>
+              <span className="text-sm font-semibold text-blue-700 tracking-wide">Boutique AI Studio</span>
             </motion.div>
 
             <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-[0.95] tracking-tight">
@@ -208,7 +208,7 @@ export default function Home() {
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">What We Build</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
-              Production-ready AI systems built for speed. From autonomous agents to custom LLMs, we ship what works.
+              Handcrafted AI solutions with white-glove service. We're a boutique studio that builds custom AI tools with obsessive attention to detail.
             </p>
           </motion.div>
 
@@ -270,19 +270,19 @@ export default function Home() {
               transition={{ duration: 1, ease: "easeOut" }}
             >
               <h2 className="text-5xl md:text-6xl font-bold mb-10 leading-tight tracking-tight">
-                Founded by
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> Engineers Who Ship</span>
+                A Small Team
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> Obsessed with Craft</span>
               </h2>
               <p className="text-xl text-gray-600 mb-12 leading-relaxed font-light">
-                We've built ML systems, trained models, and deployed to millions.
-                From research labs to production environments, we know what it takes to make AI actually work.
-                Now we're helping you build the future.
+                We build AI tools we'd want to use ourselves.
+                From indie hackers to AI pioneers, we believe the best software comes from small teams with big ideas.
+                Quality over quantity, always.
               </p>
               <div className="flex gap-12">
                 {[
-                  { number: '5+', label: 'Years in AI', color: 'text-blue-600' },
-                  { number: '20+', label: 'Models Built', color: 'text-purple-600' },
-                  { number: '3M+', label: 'API Calls/Day', color: 'text-cyan-600' }
+                  { number: 'Est. 2024', label: 'Founded', color: 'text-blue-600' },
+                  { number: '3', label: 'Products Shipped', color: 'text-purple-600' },
+                  { number: '10+', label: 'Active Projects', color: 'text-cyan-600' }
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -383,95 +383,81 @@ export default function Home() {
               transition={{ duration: 1, ease: "easeOut" }}
               className="flex items-center justify-center lg:justify-end"
             >
-              <div className="w-80 h-80 rounded-3xl bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 p-8 shadow-2xl overflow-hidden relative border border-blue-500/20">
-                {/* Animated Grid Background */}
-                <div className="absolute inset-0 opacity-20">
-                  <div className="grid grid-cols-8 grid-rows-8 gap-1 h-full w-full">
-                    {[...Array(64)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className="bg-blue-400 rounded-sm"
-                        initial={{ opacity: 0.1 }}
-                        animate={{ opacity: [0.1, 0.6, 0.1] }}
-                        transition={{
-                          duration: 2,
-                          delay: (i * 0.05) % 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
+              <div className="relative w-80 h-80">
+                {/* Main Gradient Sphere */}
+                <motion.div
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    rotate: [0, 360]
+                  }}
+                  transition={{
+                    scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                    rotate: { duration: 20, repeat: Infinity, ease: "linear" }
+                  }}
+                  className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 via-purple-500/30 to-cyan-500/20 backdrop-blur-3xl border border-white/10 shadow-2xl"
+                />
 
-                {/* Central AI Symbol */}
+                {/* Inner Glow */}
+                <motion.div
+                  animate={{
+                    opacity: [0.3, 0.8, 0.3],
+                    scale: [0.8, 0.9, 0.8]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="absolute inset-8 rounded-full bg-gradient-to-br from-blue-400/30 via-purple-400/40 to-cyan-400/30 blur-xl"
+                />
+
+                {/* Core */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="w-24 h-24 border-2 border-blue-400/60 rounded-full relative"
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                    className="w-16 h-16 rounded-full bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-lg"
                   >
-                    <div className="absolute inset-2 border border-purple-400/60 rounded-full">
-                      <div className="absolute inset-2 border border-cyan-400/60 rounded-full flex items-center justify-center">
-                        <Brain size={24} className="text-white" />
-                      </div>
-                    </div>
+                    <Sparkles size={20} className="text-white/80" strokeWidth={1.5} />
                   </motion.div>
                 </div>
 
-                {/* Floating Data Points */}
-                {[...Array(8)].map((_, i) => (
+                {/* Orbiting Elements */}
+                {[0, 1, 2].map((i) => (
                   <motion.div
                     key={i}
-                    className="absolute w-2 h-2 bg-cyan-400 rounded-full"
-                    style={{
-                      left: `${10 + (i * 37) % 80}%`,
-                      top: `${15 + (i * 23) % 70}%`,
-                    }}
-                    animate={{
-                      scale: [0.5, 1.2, 0.5],
-                      opacity: [0.3, 1, 0.3],
-                    }}
+                    animate={{ rotate: 360 }}
                     transition={{
-                      duration: 3,
-                      delay: i * 0.3,
+                      duration: 8 + i * 2,
                       repeat: Infinity,
-                      ease: "easeInOut",
+                      ease: "linear",
                     }}
-                  />
-                ))}
-
-                {/* Code Lines Effect */}
-                <div className="absolute bottom-6 left-6 right-6 space-y-1">
-                  {[...Array(3)].map((_, i) => (
+                    className="absolute inset-0 flex items-center justify-center"
+                    style={{ transform: `rotate(${i * 120}deg)` }}
+                  >
                     <motion.div
-                      key={i}
-                      className="h-1 bg-gradient-to-r from-blue-400/40 via-purple-400/40 to-cyan-400/40 rounded"
-                      style={{ width: `${60 + i * 15}%` }}
-                      animate={{ opacity: [0.2, 0.8, 0.2] }}
+                      className="w-2 h-2 bg-white/60 rounded-full absolute"
+                      style={{
+                        top: '20%',
+                        left: '50%',
+                        marginLeft: '-4px'
+                      }}
+                      animate={{
+                        scale: [0.8, 1.2, 0.8],
+                        opacity: [0.6, 1, 0.6],
+                      }}
                       transition={{
                         duration: 2,
-                        delay: i * 0.4,
+                        delay: i * 0.6,
                         repeat: Infinity,
                         ease: "easeInOut",
                       }}
                     />
-                  ))}
-                </div>
-
-                {/* Text Overlay */}
-                <div className="absolute bottom-8 left-8 right-8 text-center">
-                  <div className="text-white font-mono text-xs opacity-60">
-                    &gt; Building AI systems
-                  </div>
-                  <motion.div
-                    animate={{ opacity: [0, 1, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="text-cyan-400 font-mono text-xs mt-1"
-                  >
-                    ◯ Ready to deploy
                   </motion.div>
-                </div>
+                ))}
+
+                {/* Subtle Accent */}
+                <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 blur-2xl" />
               </div>
             </motion.div>
           </div>
@@ -490,7 +476,7 @@ export default function Home() {
             <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent mb-6 tracking-tight">
               MARSFRONT
             </div>
-            <p className="text-gray-600 mb-8 font-light">Intelligence Engineered for Scale</p>
+            <p className="text-gray-600 mb-8 font-light">Handcrafted AI Solutions</p>
             <p className="text-gray-500 text-sm font-light">
               © 2024 MARSFRONT INC. All rights reserved.
             </p>
