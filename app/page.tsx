@@ -387,62 +387,100 @@ export default function Home() {
                 {/* Background blur layers */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-cyan-500/5 rounded-full blur-3xl" />
 
-                {/* Main glass orb */}
+                {/* Main Mars orb */}
                 <motion.div
                   animate={{
-                    scale: [1, 1.05, 1],
+                    scale: [1, 1.08, 1],
                     rotate: [0, 360],
                   }}
                   transition={{
-                    scale: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-                    rotate: { duration: 25, repeat: Infinity, ease: "linear" },
+                    scale: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+                    rotate: { duration: 30, repeat: Infinity, ease: "linear" },
                   }}
-                  className="relative w-72 h-72 rounded-full backdrop-blur-3xl bg-white/10 border border-white/20 shadow-2xl"
+                  className="relative w-72 h-72 rounded-full backdrop-blur-3xl shadow-2xl border border-orange-500/20"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))',
+                    background: 'radial-gradient(circle at 30% 40%, rgba(255,107,53,0.4), rgba(139,69,19,0.3), rgba(205,92,92,0.2), rgba(160,82,45,0.1))',
                   }}
                 >
-                  {/* Inner glass layers */}
+                  {/* Mars surface texture layers */}
                   <motion.div
                     animate={{
-                      scale: [0.8, 1, 0.8],
-                      opacity: [0.3, 0.6, 0.3],
+                      scale: [0.85, 1.05, 0.85],
+                      opacity: [0.4, 0.7, 0.4],
+                      rotate: [0, 180, 360],
                     }}
                     transition={{
-                      duration: 4,
+                      scale: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                      opacity: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                      rotate: { duration: 40, repeat: Infinity, ease: "linear" },
+                    }}
+                    className="absolute inset-6 rounded-full backdrop-blur-2xl border border-red-400/15"
+                    style={{
+                      background: 'radial-gradient(circle at 60% 30%, rgba(255,69,0,0.3), rgba(178,34,34,0.2), rgba(139,69,19,0.15))',
+                    }}
+                  />
+
+                  {/* Inner core with Mars-like patterns */}
+                  <motion.div
+                    animate={{
+                      scale: [0.7, 0.9, 0.7],
+                      opacity: [0.6, 0.9, 0.6],
+                      rotate: 360,
+                    }}
+                    transition={{
+                      scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                      opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                      rotate: { duration: 25, repeat: Infinity, ease: "linear" },
+                    }}
+                    className="absolute inset-12 rounded-full backdrop-blur-xl border border-orange-400/20"
+                    style={{
+                      background: 'conic-gradient(from 0deg, rgba(255,140,0,0.4), rgba(205,92,92,0.3), rgba(160,82,45,0.2), rgba(255,69,0,0.3))',
+                    }}
+                  />
+
+                  {/* Martian core glow */}
+                  <motion.div
+                    animate={{
+                      scale: [0.5, 0.7, 0.5],
+                      opacity: [0.7, 1, 0.7],
+                    }}
+                    transition={{
+                      duration: 3,
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
-                    className="absolute inset-8 rounded-full backdrop-blur-2xl bg-gradient-to-br from-blue-400/20 via-purple-400/15 to-cyan-400/20 border border-white/10"
+                    className="absolute inset-1/3 rounded-full blur-md"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(255,140,0,0.6), rgba(255,69,0,0.4), rgba(255,107,53,0.2))',
+                    }}
                   />
 
-                  <motion.div
-                    animate={{
-                      scale: [0.6, 0.8, 0.6],
-                      opacity: [0.5, 0.8, 0.5],
-                      rotate: -360,
-                    }}
-                    transition={{
-                      scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                      opacity: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                      rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                    }}
-                    className="absolute inset-16 rounded-full backdrop-blur-xl bg-gradient-to-br from-white/20 via-blue-400/10 to-purple-400/10 border border-white/15"
-                  />
-
-                  {/* Core light */}
-                  <motion.div
-                    animate={{
-                      scale: [0.4, 0.6, 0.4],
-                      opacity: [0.6, 1, 0.6],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="absolute inset-1/3 rounded-full bg-gradient-to-br from-white/40 to-white/10 blur-sm"
-                  />
+                  {/* Surface dust storms effect */}
+                  {[...Array(6)].map((_, i) => (
+                    <motion.div
+                      key={`dust-${i}`}
+                      className="absolute rounded-full backdrop-blur-sm border border-orange-300/10"
+                      style={{
+                        width: `${12 + i * 8}px`,
+                        height: `${12 + i * 8}px`,
+                        left: `${25 + (i * 31) % 50}%`,
+                        top: `${20 + (i * 23) % 60}%`,
+                        background: 'radial-gradient(circle, rgba(255,140,0,0.3), rgba(205,92,92,0.1))',
+                      }}
+                      animate={{
+                        x: [0, 30, -15, 0],
+                        y: [0, -25, 15, 0],
+                        scale: [0.8, 1.3, 0.9, 0.8],
+                        opacity: [0.2, 0.6, 0.3, 0.2],
+                      }}
+                      transition={{
+                        duration: 7 + i * 0.4,
+                        delay: i * 0.3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  ))}
                 </motion.div>
 
                 {/* Floating glass particles */}
