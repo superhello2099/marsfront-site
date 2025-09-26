@@ -16,13 +16,13 @@ export default function Home() {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0])
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900/30 text-gray-900 dark:text-gray-100 overflow-x-hidden">
+    <div ref={containerRef} className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30 text-gray-900 overflow-x-hidden">
       {/* Navigation */}
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="fixed top-0 w-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border-b border-white/20 dark:border-gray-700/20 z-50 shadow-lg shadow-black/[0.03] dark:shadow-white/[0.03]"
+        className="fixed top-0 w-full bg-white/70 backdrop-blur-xl border-b border-white/20 z-50 shadow-lg shadow-black/[0.03]"
       >
         <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
           <motion.div
