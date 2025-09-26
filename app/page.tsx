@@ -208,7 +208,7 @@ export default function Home() {
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">Masterworks in Code</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
-              Each system is a symphony of intelligence, precision-engineered by virtuosos who've dedicated their lives to the art of artificial intelligence.
+              Each system is a symphony of intelligence, precision-engineered by virtuosos who&apos;ve dedicated their lives to the art of artificial intelligence.
             </p>
           </motion.div>
 
@@ -224,7 +224,7 @@ export default function Home() {
               {
                 icon: Zap,
                 title: 'Language Mastery',
-                description: 'Our models don\'t just process language—they understand nuance, context, and the subtle art of human communication. Poetry meets precision in every token.',
+                description: 'Our models don&apos;t just process language—they understand nuance, context, and the subtle art of human communication. Poetry meets precision in every token.',
                 color: 'purple',
                 gradient: 'from-purple-500 to-purple-600'
               },
@@ -275,7 +275,7 @@ export default function Home() {
               </h2>
               <p className="text-xl text-gray-600 mb-12 leading-relaxed font-light">
                 We are the alchemists of the digital age, transmuting raw computation into conscious intelligence.
-                Our collective brings decades of mastery, forged in the crucibles of the world's most demanding challenges.
+                Our collective brings decades of mastery, forged in the crucibles of the world&apos;s most demanding challenges.
                 Where others see complexity, we see symphony.
               </p>
               <div className="flex gap-12">
