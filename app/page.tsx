@@ -383,179 +383,96 @@ export default function Home() {
               transition={{ duration: 1, ease: "easeOut" }}
               className="flex items-center justify-center lg:justify-end"
             >
-              <div className="relative w-80 h-80" style={{ perspective: '1000px' }}>
-                {/* 3D Container */}
+              <div className="relative w-80 h-80 flex items-center justify-center">
+                {/* Background blur layers */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-cyan-500/5 rounded-full blur-3xl" />
+
+                {/* Main glass orb */}
                 <motion.div
                   animate={{
-                    rotateY: [0, 360],
-                    rotateX: [0, 15, 0, -15, 0],
+                    scale: [1, 1.05, 1],
+                    rotate: [0, 360],
                   }}
                   transition={{
-                    rotateY: { duration: 20, repeat: Infinity, ease: "linear" },
-                    rotateX: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+                    scale: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                    rotate: { duration: 25, repeat: Infinity, ease: "linear" },
                   }}
-                  className="relative w-full h-full preserve-3d"
+                  className="relative w-72 h-72 rounded-full backdrop-blur-3xl bg-white/10 border border-white/20 shadow-2xl"
                   style={{
-                    transformStyle: 'preserve-3d',
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))',
                   }}
                 >
-                  {/* Main 3D Cube */}
-                  <div className="relative w-64 h-64 mx-auto preserve-3d" style={{ transformStyle: 'preserve-3d' }}>
-                    {/* Front Face */}
-                    <motion.div
-                      whileHover={{ z: 20 }}
-                      className="absolute inset-0 bg-gradient-to-br from-blue-600/90 to-purple-700/90 rounded-2xl backdrop-blur-xl border border-white/20 flex items-center justify-center shadow-2xl"
-                      style={{ transform: 'translateZ(32px)' }}
-                    >
-                      <div className="text-center text-white">
-                        <motion.div
-                          animate={{ rotate: 360, scale: [1, 1.2, 1] }}
-                          transition={{
-                            rotate: { duration: 10, repeat: Infinity, ease: "linear" },
-                            scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-                          }}
-                          className="text-4xl mb-4"
-                        >
-                          🧠
-                        </motion.div>
-                        <div className="text-lg font-bold">Neural</div>
-                        <div className="text-sm opacity-80">Architecture</div>
-                      </div>
-                    </motion.div>
+                  {/* Inner glass layers */}
+                  <motion.div
+                    animate={{
+                      scale: [0.8, 1, 0.8],
+                      opacity: [0.3, 0.6, 0.3],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className="absolute inset-8 rounded-full backdrop-blur-2xl bg-gradient-to-br from-blue-400/20 via-purple-400/15 to-cyan-400/20 border border-white/10"
+                  />
 
-                    {/* Back Face */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-cyan-600/90 to-blue-700/90 rounded-2xl backdrop-blur-xl border border-white/20 flex items-center justify-center shadow-2xl"
-                      style={{ transform: 'translateZ(-32px) rotateY(180deg)' }}
-                    >
-                      <div className="text-center text-white">
-                        <motion.div
-                          animate={{ rotate: -360, scale: [1, 1.1, 1] }}
-                          transition={{
-                            rotate: { duration: 12, repeat: Infinity, ease: "linear" },
-                            scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-                          }}
-                          className="text-4xl mb-4"
-                        >
-                          ⚡
-                        </motion.div>
-                        <div className="text-lg font-bold">Lightning</div>
-                        <div className="text-sm opacity-80">Speed</div>
-                      </div>
-                    </motion.div>
+                  <motion.div
+                    animate={{
+                      scale: [0.6, 0.8, 0.6],
+                      opacity: [0.5, 0.8, 0.5],
+                      rotate: -360,
+                    }}
+                    transition={{
+                      scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                      opacity: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                      rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                    }}
+                    className="absolute inset-16 rounded-full backdrop-blur-xl bg-gradient-to-br from-white/20 via-blue-400/10 to-purple-400/10 border border-white/15"
+                  />
 
-                    {/* Right Face */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-purple-600/90 to-pink-700/90 rounded-2xl backdrop-blur-xl border border-white/20 flex items-center justify-center shadow-2xl"
-                      style={{ transform: 'rotateY(90deg) translateZ(32px)' }}
-                    >
-                      <div className="text-center text-white">
-                        <motion.div
-                          animate={{ rotate: [0, 180, 360], scale: [1, 1.3, 1] }}
-                          transition={{
-                            rotate: { duration: 8, repeat: Infinity, ease: "easeInOut" },
-                            scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
-                          }}
-                          className="text-4xl mb-4"
-                        >
-                          ✨
-                        </motion.div>
-                        <div className="text-lg font-bold">Magic</div>
-                        <div className="text-sm opacity-80">Happens</div>
-                      </div>
-                    </motion.div>
-
-                    {/* Left Face */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-green-600/90 to-teal-700/90 rounded-2xl backdrop-blur-xl border border-white/20 flex items-center justify-center shadow-2xl"
-                      style={{ transform: 'rotateY(-90deg) translateZ(32px)' }}
-                    >
-                      <div className="text-center text-white">
-                        <motion.div
-                          animate={{ scale: [1, 1.4, 1], rotate: [0, 90, 180, 270, 360] }}
-                          transition={{
-                            scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                            rotate: { duration: 15, repeat: Infinity, ease: "linear" }
-                          }}
-                          className="text-4xl mb-4"
-                        >
-                          🚀
-                        </motion.div>
-                        <div className="text-lg font-bold">Launch</div>
-                        <div className="text-sm opacity-80">Ready</div>
-                      </div>
-                    </motion.div>
-
-                    {/* Top Face */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-orange-600/90 to-red-700/90 rounded-2xl backdrop-blur-xl border border-white/20 flex items-center justify-center shadow-2xl"
-                      style={{ transform: 'rotateX(90deg) translateZ(32px)' }}
-                    >
-                      <div className="text-center text-white">
-                        <motion.div
-                          animate={{ rotate: [0, 360], scale: [0.8, 1.2, 0.8] }}
-                          transition={{
-                            rotate: { duration: 6, repeat: Infinity, ease: "linear" },
-                            scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-                          }}
-                          className="text-4xl mb-4"
-                        >
-                          🎯
-                        </motion.div>
-                        <div className="text-lg font-bold">Precision</div>
-                        <div className="text-sm opacity-80">Targeting</div>
-                      </div>
-                    </motion.div>
-
-                    {/* Bottom Face */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-indigo-600/90 to-violet-700/90 rounded-2xl backdrop-blur-xl border border-white/20 flex items-center justify-center shadow-2xl"
-                      style={{ transform: 'rotateX(-90deg) translateZ(32px)' }}
-                    >
-                      <div className="text-center text-white">
-                        <motion.div
-                          animate={{ rotate: -360, scale: [1.2, 0.9, 1.2] }}
-                          transition={{
-                            rotate: { duration: 9, repeat: Infinity, ease: "linear" },
-                            scale: { duration: 3.5, repeat: Infinity, ease: "easeInOut" }
-                          }}
-                          className="text-4xl mb-4"
-                        >
-                          🔮
-                        </motion.div>
-                        <div className="text-lg font-bold">Future</div>
-                        <div className="text-sm opacity-80">Vision</div>
-                      </div>
-                    </motion.div>
-                  </div>
-
-                  {/* Floating Particles around cube */}
-                  {[...Array(8)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-2 h-2 bg-white/60 rounded-full"
-                      style={{
-                        left: `${10 + (i * 45) % 90}%`,
-                        top: `${15 + (i * 37) % 70}%`,
-                      }}
-                      animate={{
-                        x: [0, 20, -10, 0],
-                        y: [0, -15, 10, 0],
-                        scale: [0.5, 1.2, 0.8, 0.5],
-                        opacity: [0.3, 1, 0.6, 0.3],
-                      }}
-                      transition={{
-                        duration: 4 + i * 0.5,
-                        delay: i * 0.3,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  ))}
+                  {/* Core light */}
+                  <motion.div
+                    animate={{
+                      scale: [0.4, 0.6, 0.4],
+                      opacity: [0.6, 1, 0.6],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className="absolute inset-1/3 rounded-full bg-gradient-to-br from-white/40 to-white/10 blur-sm"
+                  />
                 </motion.div>
 
-                {/* Base Glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/10 to-transparent rounded-full blur-3xl -z-10" />
+                {/* Floating glass particles */}
+                {[...Array(12)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute rounded-full backdrop-blur-sm bg-white/20 border border-white/30"
+                    style={{
+                      width: `${8 + (i % 3) * 4}px`,
+                      height: `${8 + (i % 3) * 4}px`,
+                      left: `${20 + (i * 31) % 60}%`,
+                      top: `${15 + (i * 37) % 70}%`,
+                    }}
+                    animate={{
+                      y: [0, -20, 0],
+                      x: [0, 10, -5, 0],
+                      scale: [0.8, 1.2, 0.8],
+                      opacity: [0.3, 0.8, 0.3],
+                    }}
+                    transition={{
+                      duration: 5 + i * 0.3,
+                      delay: i * 0.2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                ))}
+
+                {/* Subtle accent glow */}
+                <div className="absolute -inset-8 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 rounded-full blur-2xl -z-10" />
               </div>
             </motion.div>
           </div>
